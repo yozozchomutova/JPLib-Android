@@ -6,13 +6,9 @@
     android:layout_height="match_parent"
     android:background="#111111">
 
-    <ImageView
-        android:id="@+id/rendering_image"
+    <net.jozoproductions.jplibandroid.spaces.Space2DSurfaceView
+        android:id="@+id/surfaceView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="matrix"
-        android:src="@android:drawable/btn_dialog"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

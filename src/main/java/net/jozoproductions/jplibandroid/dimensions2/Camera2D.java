@@ -6,5 +6,5 @@ public class Camera2D {
 
     public Vector2 position;
 
-
+    public float zoom = 1f;
 }

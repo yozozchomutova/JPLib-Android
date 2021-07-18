@@ -3,29 +3,37 @@ package net.jozoproductions.jplibandroid;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
-import androidx.annotation.ColorInt;
+import android.graphics.Canvas;
 
 public class Texture {
 
-    public int width;
-    public int height;
+    public Bitmap bitmap;
 
-    @ColorInt
-    public int[][] image;
+    //Overlaying process
+    private Canvas overlayingProcessCanvas;
 
     public Texture(Context context, int drawableId) {
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        opts.inScaled = false;
 
-        width = bitmap.getWidth();
-        height = bitmap.getHeight();
+        bitmap = BitmapFactory.decodeResource(context.getResources(), drawableId, opts);
+    }
 
-        image = new int[width][height];
+    public Texture(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
 
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                image[x][y] = bitmap.getPixel(x, y);
-            }
-        }
+    public void StartBuildingMode(Bitmap newBitmap) {
+        overlayingProcessCanvas = new Canvas(newBitmap);
+        AddBitmapToBuildingMode(bitmap, 0, 0);
+        bitmap = newBitmap;
+    }
+
+    public void AddBitmapToBuildingMode(Bitmap bitmap, int x, int y) {
+        overlayingProcessCanvas.drawBitmap(bitmap, x, y, null);
+    }
+
+    public void StopBuildingMode() {
+
     }
 }
